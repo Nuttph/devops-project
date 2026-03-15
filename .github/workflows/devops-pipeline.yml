@@ -57,3 +57,6 @@ jobs:
           script: |
             cd /home/ubuntu/hr-devops-lab
             ls -a
+            git pull origin main
+            docker-compose down
+            docker-compose up -d --build
