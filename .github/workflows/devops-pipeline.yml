@@ -55,8 +55,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd ~/hr-devops-lab || exit
-            git fetch --all
-            git checkout ${{ github.ref_name }}
-            git reset --hard origin/${{ github.ref_name }}
+            cd ~/hr-devops-lab
+            git pull origin main
+            docker-compose down
             docker-compose up -d --build
