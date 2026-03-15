@@ -55,8 +55,15 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd ~/project-folder
-            # เช็คว่าอยู่ถูก Branch ไหม แล้ว Pull โค้ด
+            # ไปที่โฟลเดอร์โปรเจกต์
+            cd ~/project-folder || exit
+            
+            # ดึงการอัปเดตล่าสุดจาก Remote
+            git fetch --all
+            
+            # สลับสาขาและดึงโค้ด (บังคับทับเพื่อป้องกันไฟล์ขัดแย้งบน Server)
             git checkout ${{ github.ref_name }}
-            git pull origin ${{ github.ref_name }}
+            git reset --hard origin/${{ github.ref_name }}
+            
+            # สั่งรัน Docker ใหม่
             docker-compose up -d --build
