@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.14.3 on win32)" generated="2026-03-15T22:01:17.009111" rpa="false" schemaversion="5">
+<suite id="s1" name="Api Test" source="E:\KU\KU3-2\DevOps\Project\tests\api_test.robot">
+<test id="s1-t1" name="Check API Status" line="5">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-03-15T22:01:17.080796" level="INFO">Creating Session using : alias=mysess, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>mysess</arg>
+<arg>http://127.0.0.1:8000</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-03-15T22:01:17.080646" elapsed="0.000319"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-03-15T22:01:17.085271" level="INFO">GET Request : url=http://127.0.0.1:8000/health 
+ path_url=/health 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-03-15T22:01:17.085393" level="INFO">GET Response : url=http://127.0.0.1:8000/health 
+ status=200, reason=OK 
+ headers={'date': 'Sun, 15 Mar 2026 15:01:16 GMT', 'server': 'uvicorn', 'content-length': '15', 'content-type': 'application/json'} 
+ body={"status":"up"} 
+ </msg>
+<msg time="2026-03-15T22:01:17.085519" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>mysess</arg>
+<arg>/health</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-15T22:01:17.081253" elapsed="0.004307"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-03-15T22:01:17.086471" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-03-15T22:01:17.085837" elapsed="0.000684"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${resp.json()['status']}</arg>
+<arg>up</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2026-03-15T22:01:17.086732" elapsed="0.000438"/>
+</kw>
+<status status="PASS" start="2026-03-15T22:01:17.079799" elapsed="0.007545"/>
+</test>
+<test id="s1-t2" name="Check API Root" line="11">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-03-15T22:01:17.087981" level="INFO">Creating Session using : alias=myroot, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>myroot</arg>
+<arg>http://127.0.0.1:8000</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-03-15T22:01:17.087886" elapsed="0.000232"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-03-15T22:01:17.091666" level="INFO">GET Request : url=http://127.0.0.1:8000/ 
+ path_url=/ 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-03-15T22:01:17.091774" level="INFO">GET Response : url=http://127.0.0.1:8000/ 
+ status=200, reason=OK 
+ headers={'date': 'Sun, 15 Mar 2026 15:01:16 GMT', 'server': 'uvicorn', 'content-length': '19', 'content-type': 'application/json'} 
+ body={"message":"hello"} 
+ </msg>
+<msg time="2026-03-15T22:01:17.091939" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>myroot</arg>
+<arg>/</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-15T22:01:17.088261" elapsed="0.003714"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-03-15T22:01:17.092980" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-03-15T22:01:17.092234" elapsed="0.000833"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${resp.json()['message']}</arg>
+<arg>hello</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-03-15T22:01:17.093287" elapsed="0.000632"/>
+</kw>
+<status status="PASS" start="2026-03-15T22:01:17.087615" elapsed="0.006493"/>
+</test>
+<status status="PASS" start="2026-03-15T22:01:17.010778" elapsed="0.083751"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Api Test" id="s1" pass="2" fail="0" skip="0">Api Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
