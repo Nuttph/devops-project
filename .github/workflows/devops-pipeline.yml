@@ -55,15 +55,8 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # ไปที่โฟลเดอร์โปรเจกต์
-            cd ~/project-folder || exit
-            
-            # ดึงการอัปเดตล่าสุดจาก Remote
+            cd ~/hr-devops-lab || exit
             git fetch --all
-            
-            # สลับสาขาและดึงโค้ด (บังคับทับเพื่อป้องกันไฟล์ขัดแย้งบน Server)
             git checkout ${{ github.ref_name }}
             git reset --hard origin/${{ github.ref_name }}
-            
-            # สั่งรัน Docker ใหม่
             docker-compose up -d --build
