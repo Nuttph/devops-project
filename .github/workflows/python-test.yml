@@ -3,7 +3,7 @@ name: Python Integration Test
 on: [push]
 
 jobs:
-  test:
+  integration-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

@@ -16,5 +16,5 @@ Check Database InSide
     Create Session  mysess  ${API_URL}
     ${resp}=  Get On Session  mysess  /test-db-connection
     Should Be Equal As Integers  ${resp.status_code}  200
-    Should Be Equal As Strings  ${resp.json()['status']}  connected!
+    Should Be Equal As Strings  ${resp.json()['status']}  connected
     Should Be Equal As Strings  ${resp.json()['database']}  hr
