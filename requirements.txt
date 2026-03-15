@@ -1,6 +1,10 @@
 # Web Framework
 fastapi
 uvicorn[standard]
+motor
+python-dotenv
+pydantic[email]
+dnspython
 
 # Testing Framework
 robotframework

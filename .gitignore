@@ -1,5 +1,21 @@
+# Python virtual environment
 .venv/
-.env/
-/tests/
+venv/
+env/
+
+# Environment variables (สำคัญมาก! ห้ามเอาขึ้น Git เพราะมีรหัส DB)
+.env
+
+# Python cache
 __pycache__/
 *.pyc
+
+# Robot Framework outputs (ไฟล์รายงานการเทส)
+results/
+report.html
+log.html
+output.xml
+
+# IDE settings
+.vscode/
+.idea/
