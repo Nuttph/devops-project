@@ -5,6 +5,19 @@ from bson import ObjectId
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
+@router.get("/", response_model=list[UserResponse])
+async def get_users():
+    db = get_db()
+    # ดึงข้อมูลจากคอลเลกชัน users
+    users_cursor = db.users.find()
+    users = await users_cursor.to_list(length=100) # แนะนำให้เริ่มที่ 100 ก่อน
+    
+    # แปลง _id ให้เป็น string เพื่อให้ตรงกับ Pydantic Model
+    for user in users:
+        user["_id"] = str(user["_id"])
+        
+    return users
+
 @router.post("/", response_model=UserResponse)
 async def create_user(user: UserCreate):
     db = get_db()
